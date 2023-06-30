@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:scratcher/scratcher.dart';
 
 class ScratchMap extends StatefulWidget {
+  const ScratchMap({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _ScratchMapState createState() => _ScratchMapState();
 }
 
