@@ -114,10 +114,7 @@ class _NewExpenseState extends State<NewExpense> {
       // use layout builder to check for constraints for the min/max width and height
       // will only care about the parent widget instead of the screen size
 
-      final minWidth = constraints.minWidth;
       final maxWidth = constraints.maxWidth;
-      final minHeight = constraints.minHeight;
-      final maxHeight = constraints.maxHeight;
 
       return SizedBox(
         height: double.infinity,
