@@ -8,10 +8,10 @@ import 'package:meal_plan/models/category.dart';
 class CategoriesScreen extends StatelessWidget {
   const CategoriesScreen({
     super.key,
-    // required this.onToggleFavorite,
+    required this.onToggleFavorite,
   });
 
-  // final void Function(Meal meal) onToggleFavorite;
+  final void Function(Meal meal) onToggleFavorite;
 
   void _selectCategory(BuildContext context, Category category) {
     final filteredMeals = dummyMeals
@@ -23,7 +23,7 @@ class CategoriesScreen extends StatelessWidget {
         builder: (ctx) => MealsScreen(
           title: category.title,
           meals: filteredMeals,
-          // onToggleFavorite: onToggleFavorite,
+          onToggleFavorite: onToggleFavorite,
         ),
       ),
     );
@@ -31,29 +31,24 @@ class CategoriesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Pick your category'),
+    return GridView(
+      padding: const EdgeInsets.all(24),
+      // can be optimized by using builder if to may inputs
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        childAspectRatio: 3 / 2,
+        mainAxisSpacing: 20,
+        crossAxisSpacing: 20,
       ),
-      body: GridView(
-        padding: const EdgeInsets.all(24),
-        // can be optimized by using builder if to may inputs
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          childAspectRatio: 3 / 2,
-          mainAxisSpacing: 20,
-          crossAxisSpacing: 20,
-        ),
-        children: [
-          for (final category in availableCategories)
-            CategoryGridItem(
-              category: category,
-              onSelectCategory: () {
-                _selectCategory(context, category);
-              },
-            ),
-        ],
-      ),
+      children: [
+        for (final category in availableCategories)
+          CategoryGridItem(
+            category: category,
+            onSelectCategory: () {
+              _selectCategory(context, category);
+            },
+          ),
+      ],
     );
   }
 }
