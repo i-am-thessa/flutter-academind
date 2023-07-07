@@ -67,7 +67,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
               contentPadding: const EdgeInsets.only(left: 34, right: 22),
             ),
             SwitchListTile(
-              value: _glutenFreeFilterSet,
+              value: _lactoseFreeFilterSet,
               onChanged: (isChecked) {
                 setState(() {
                   _lactoseFreeFilterSet = isChecked;
@@ -89,7 +89,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
               contentPadding: const EdgeInsets.only(left: 34, right: 22),
             ),
             SwitchListTile(
-              value: _glutenFreeFilterSet,
+              value: _vegetarianFilterSet,
               onChanged: (isChecked) {
                 setState(() {
                   _vegetarianFilterSet = isChecked;
@@ -111,7 +111,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
               contentPadding: const EdgeInsets.only(left: 34, right: 22),
             ),
             SwitchListTile(
-              value: _glutenFreeFilterSet,
+              value: _veganFilterSet,
               onChanged: (isChecked) {
                 setState(() {
                   _veganFilterSet = isChecked;
