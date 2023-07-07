@@ -77,7 +77,6 @@ class MealItem extends StatelessWidget {
                       const SizedBox(width: 12),
                       MealItemTrait(
                           icon: Icons.attach_money, label: affordabilityText),
-                      const SizedBox(width: 12),
                     ],
                   ),
                 ]),
