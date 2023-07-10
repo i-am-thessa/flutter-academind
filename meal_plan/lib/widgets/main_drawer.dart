@@ -6,7 +6,7 @@ class MainDrawer extends StatelessWidget {
     required this.onSelectScreen,
   });
 
-  final void Function(String identifier) onSelectScreen;
+  final void Function(String identifier) ;
 
   @override
   Widget build(BuildContext context) {
