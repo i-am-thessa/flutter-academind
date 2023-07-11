@@ -31,6 +31,7 @@ class _GroceryListState extends State<GroceryList> {
         'shopping-list.json');
     try {
       final response = await http.get(url);
+
       if (response.statusCode >= 400) {
         setState(() {
           _error = 'Failed to fetch data. Please try again later';
