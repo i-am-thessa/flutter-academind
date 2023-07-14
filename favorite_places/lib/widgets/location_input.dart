@@ -19,7 +19,7 @@ class _LocationInputState extends State<LocationInput> {
 
   String get locationImage {
     print('*******************location_input.dart : get locationImage');
-    print('*******************_pickedLocation=${_pickedLocation}');
+    print('*******************_pickedLocation=$_pickedLocation');
     if (_pickedLocation == null) {
       return '';
     }
@@ -27,8 +27,8 @@ class _LocationInputState extends State<LocationInput> {
     final lat = _pickedLocation!.latitude;
     final lng = _pickedLocation!.longitude;
 
-    print('*******************lat=${lat}');
-    print('*******************lat=${lng}');
+    print('*******************lat=$lat');
+    print('*******************lat=$lng');
 
     return 'https://maps.googleapis.com/maps/api/staticmap?center$lat,$lng=&zoom=16&size=600x300&maptype=roadmap&markers=color:red%7Clabel:A%7C$lat,$lng&key=AIzaSyCcmh_pAKa7GU1bjhKeCQGM3kqq_B0pZg4';
   }
@@ -77,8 +77,8 @@ class _LocationInputState extends State<LocationInput> {
     final address = resData['results'][0]['formatted_address'];
 
     print('*******************location_input.dart : _getCurrentLocation');
-    print('*******************_pickedLocation=${resData}');
-    print('*******************_pickedLocation=${address}');
+    print('*******************_pickedLocation=$resData');
+    print('*******************_pickedLocation=$address');
 
     setState(() {
       _pickedLocation = PlaceLocation(
