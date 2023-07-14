@@ -18,13 +18,19 @@ class _LocationInputState extends State<LocationInput> {
   var _isGettingLocation = false;
 
   String get locationImage {
+    print('*******************location_input.dart : get locationImage');
+    print('*******************_pickedLocation=${_pickedLocation}');
     if (_pickedLocation == null) {
       return '';
     }
 
     final lat = _pickedLocation!.latitude;
     final lng = _pickedLocation!.longitude;
-    return 'https://maps.googleapis.com/maps/api/staticmap?center$lat,$lng=&zoom=16&size=600x300&maptype=roadmap&markers=color:ref%7Clabel:A%7C$lat,$lng&key=YOURAPIKEY';
+
+    print('*******************lat=${lat}');
+    print('*******************lat=${lng}');
+
+    return 'https://maps.googleapis.com/maps/api/staticmap?center$lat,$lng=&zoom=16&size=600x300&maptype=roadmap&markers=color:red%7Clabel:A%7C$lat,$lng&key=AIzaSyCcmh_pAKa7GU1bjhKeCQGM3kqq_B0pZg4';
   }
 
   void _getCurrentLocation() async {
@@ -51,6 +57,10 @@ class _LocationInputState extends State<LocationInput> {
       }
     }
 
+    setState(() {
+      _isGettingLocation = true;
+    });
+
     locationData = await location.getLocation();
     final lat = locationData.latitude;
     final lng = locationData.longitude;
@@ -60,11 +70,15 @@ class _LocationInputState extends State<LocationInput> {
     }
 
     final url = Uri.parse(
-        'https://maps.googleapis.com/maps/api/geocode/json?latlng=$lat,$lng&key=YOUR_API_KEY'); //TODO
+        'https://maps.googleapis.com/maps/api/geocode/json?latlng=$lat,$lng&key=AIzaSyCcmh_pAKa7GU1bjhKeCQGM3kqq_B0pZg4');
 
     final response = await http.get(url);
     final resData = json.decode(response.body);
     final address = resData['results'][0]['formatted_address'];
+
+    print('*******************location_input.dart : _getCurrentLocation');
+    print('*******************_pickedLocation=${resData}');
+    print('*******************_pickedLocation=${address}');
 
     setState(() {
       _pickedLocation = PlaceLocation(
@@ -72,7 +86,7 @@ class _LocationInputState extends State<LocationInput> {
         longitude: lng,
         address: address,
       );
-      _isGettingLocation = true;
+      _isGettingLocation = false;
     });
 
     widget.onSelectLocation(_pickedLocation!);
@@ -90,6 +104,7 @@ class _LocationInputState extends State<LocationInput> {
     );
 
     if (_pickedLocation != null) {
+      print('display preview content...........');
       previewContent = Image.network(
         locationImage,
         fit: BoxFit.cover,
@@ -99,6 +114,7 @@ class _LocationInputState extends State<LocationInput> {
     }
 
     if (_isGettingLocation) {
+      print('display _isGettingLocation...........');
       previewContent = const CircularProgressIndicator();
     }
 
@@ -107,6 +123,7 @@ class _LocationInputState extends State<LocationInput> {
         Container(
           height: 170,
           width: double.infinity,
+          alignment: Alignment.center,
           decoration: BoxDecoration(
             border: Border.all(
               width: 1,
